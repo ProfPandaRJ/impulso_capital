@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impulso Capital — Gestão Patrimonial & Rendimento Diário de 1%</title>
+  <!-- Favicon Dinâmico no modelo da logomarca IC -->
+  <link id="dynamic-favicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23242424'/%3E%3Crect x='3' y='3' width='58' height='58' rx='8' fill='none' stroke='%23D4AF37' stroke-width='2.5'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Georgia, serif' font-weight='700' font-size='26' fill='%23D4AF37'%3EIC%3C/text%3E%3C/svg%3E" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilo.css" />
+  </head>
+<body id="app-body" class="min-h-screen flex flex-col selection:bg-[#D4AF37] selection:text-[#121212]">
+
+  <!-- ===================================================================== -->
+  <!-- 1. TOP HEADER DESKTOP (APENAS NA VIEW DO SITE INSTITUCIONAL)        -->
+  <!-- ===================================================================== -->
+  <div id="hero-banner-wrapper" class="hero-desk-bg parallax-bg-section">
+  <header id="site-desktop-header" class="hidden lg:block sticky top-0 z-40 bg-[#0B0E11]/45 backdrop-blur-md border-b border-[#2B3139]/60">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="#inicio" onclick="navigateToSiteSection('inicio')" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 bg-[#181A20] border border-[#F0B90B] flex items-center justify-center text-[#F0B90B] font-serif-title font-bold text-lg brand-logo-badge">IC</div>
+        <img src="" alt="Impulso Capital" class="hidden h-11 object-contain brand-logo-img" />
+        <div>
+          <div class="font-serif-title text-xl font-bold tracking-wide text-[#EAECEF] group-hover:text-[#F0B90B] transition brand-title-text">IMPULSO CAPITAL</div>
+          <div class="text-[11px] uppercase tracking-[0.2em] text-[#F0B90B] brand-subtitle-text">Gestão Patrimonial</div>
+        </div>
+      </a>
+
+      <nav class="flex items-center gap-7 text-sm text-[#848E9C]">
+        <a href="#inicio" onclick="navigateToSiteSection('inicio')" class="hover:text-[#F0B90B] transition" data-i18n="nav_home">Início</a>
+        <a href="#quem-somos" onclick="navigateToSiteSection('quem-somos')" class="hover:text-[#F0B90B] transition" data-i18n="nav_about">Quem Somos</a>
+        <a href="#o-que-oferecemos" onclick="navigateToSiteSection('o-que-oferecemos')" class="hover:text-[#F0B90B] transition" data-i18n="nav_offer">O Que Oferecemos</a>
+        <a href="#invista-agora" onclick="navigateToSiteSection('invista-agora')" class="hover:text-[#F0B90B] transition" data-i18n="nav_invest">Invista Agora</a>
+        <a href="#contato" onclick="navigateToSiteSection('contato')" class="hover:text-[#F0B90B] transition" data-i18n="nav_contact">Contato</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+       
+        <div class="guest-header-actions flex items-center gap-2">
+          <button type="button" onclick="openAuthModal('login')" class="btn-outline px-4 py-2 text-xs sm:text-sm cursor-pointer" data-i18n="btn_login">Entrar</button>
+          <button type="button" onclick="openAuthModal('register')" class="btn-gold px-4 py-2 text-xs sm:text-sm cursor-pointer" data-i18n="btn_register">Abrir Conta</button>
+        </div>
+
+        <div class="user-header-actions hidden items-center gap-3">
+          <span class="user-role-pill text-xs px-3 py-1.5 bg-[#181A20] border border-[#F0B90B]/50 text-[#F0B90B]"></span>
+          <button type="button" onclick="returnToActiveDashboard()" class="btn-outline px-3 py-2 text-xs cursor-pointer" data-i18n="btn_my_panel">Meu Painel</button>
+          <button type="button" onclick="logoutUser()" class="bg-red-950/60 border border-red-800 text-red-300 hover:bg-red-900/60 px-3 py-2 text-xs cursor-pointer" data-i18n="btn_logout">Sair</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 2. BARRA MOBILE COM BOTÃO SANDUÍCHE (SITE E PAINEL DE CONTROLE)       -->
+  <!-- ===================================================================== -->
+  <header id="mobile-top-bar" class="lg:hidden sticky top-0 z-40 bg-[#0B0E11]/55 backdrop-blur-md border-b border-[#2B3139]/60 px-4 h-16 flex items-center justify-between">
+    <a href="#inicio" onclick="navigateToSiteSection('inicio')" class="flex items-center gap-2.5">
+      <div class="w-9 h-9 bg-[#181A20] border border-[#F0B90B] flex items-center justify-center text-[#F0B90B] font-serif-title font-bold text-base brand-logo-badge">IC</div>
+      <img src="" alt="Impulso Capital" class="hidden h-9 object-contain brand-logo-img" />
+      <div>
+        <div class="font-serif-title text-base font-bold tracking-wide text-[#EAECEF] brand-title-text">IMPULSO CAPITAL</div>
+        <div class="text-[9px] uppercase tracking-[0.2em] text-[#F0B90B] brand-subtitle-text">Gestão Patrimonial</div>
+      </div>
+    </a>
+
+    <div class="flex items-center gap-2">
+      <div class="flex items-center gap-1.5 border border-[#2B3139] bg-[#181A20] px-2 py-1">
+        <button type="button" onclick="setLanguage('pt')" class="lang-flag-pt flex items-center transition cursor-pointer" title="Português (Brasil)">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 20" class="w-5 h-3.5 rounded-[2px] pointer-events-none">
+            <rect width="28" height="20" fill="#009B3A"/>
+            <polygon points="14,2.5 25.5,10 14,17.5 2.5,10" fill="#FFDF00"/>
+            <circle cx="14" cy="10" r="4.3" fill="#002776"/>
+          </svg>
+        </button>
+        <span class="text-[#333333] text-xs">|</span>
+        <button type="button" onclick="setLanguage('en')" class="lang-flag-en flex items-center opacity-50 transition cursor-pointer" title="English (US)">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 20" class="w-5 h-3.5 rounded-[2px] pointer-events-none">
+            <rect width="28" height="20" fill="#B22234"/>
+            <path d="M0,2.3H28 M0,5.4H28 M0,8.5H28 M0,11.5H28 M0,14.6H28 M0,17.7H28" stroke="#FFFFFF" stroke-width="1.5"/>
+            <rect width="12.5" height="10.8" fill="#3C3B6E"/>
+          </svg>
+        </button>
+      </div>
+
+      <button type="button" onclick="toggleMobileDrawer()" aria-label="Abrir Menu" class="w-10 h-10 bg-[#181A20] border border-[#2B3139] hover:border-[#F0B90B] flex flex-col items-center justify-center gap-1.5">
+        <span class="w-5 h-0.5 bg-[#D4AF37]"></span>
+        <span class="w-5 h-0.5 bg-[#F3F4F6]"></span>
+        <span class="w-5 h-0.5 bg-[#D4AF37]"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- BACKDROP DO MENU SANDUÍCHE MOBILE -->
+  <div id="mobile-drawer-backdrop" onclick="closeMobileDrawer()" class="hidden fixed inset-0 z-40 bg-black/75 backdrop-blur-xs lg:hidden"></div>
+
+  <!-- ===================================================================== -->
+  <!-- 3. SIDEBAR LATERAL ESQUERDA (DESKTOP NO PAINEL + DRAWER NO MOBILE)   -->
+  <!-- ===================================================================== -->
+  <aside id="app-sidebar" class="fixed top-0 left-0 z-50 h-screen w-72 shrink-0 bg-[#121418] border-r border-[#2B3139] flex flex-col justify-between transform -translate-x-full transition-transform duration-300 ease-out">
+    <div class="flex flex-col h-full overflow-y-auto">
+      <div class="p-6 border-b border-[#2B3139] flex items-center justify-between">
+        <a href="#inicio" onclick="navigateToSiteSection('inicio')" class="flex items-center gap-3 group">
+          <div class="w-11 h-11 bg-[#181A20] border border-[#F0B90B] flex items-center justify-center text-[#F0B90B] font-serif-title font-bold text-lg shrink-0 brand-logo-badge">IC</div>
+          <img src="" alt="Impulso Capital" class="hidden h-11 object-contain brand-logo-img" />
+          <div>
+            <div class="font-serif-title text-lg font-bold tracking-wide text-[#EAECEF] group-hover:text-[#F0B90B] transition brand-title-text">IMPULSO CAPITAL</div>
+            <div class="text-[10px] uppercase tracking-[0.2em] text-[#F0B90B] brand-subtitle-text">Gestão Patrimonial</div>
+          </div>
+        </a>
+        <button type="button" onclick="closeMobileDrawer()" class="text-[#848E9C] hover:text-white text-xl">&times;</button>
+      </div>
+    </div>  
+      <nav class="flex-1 py-4 space-y-1">
+        <!-- Menu Institucional (usado no Drawer Mobile do Site) -->
+        <div id="sidebar-menu-site">
+          <div class="px-6 py-2 text-[10px] uppercase tracking-widest text-[#848E9C]" data-i18n="menu_nav_title">Navegação Institucional</div>
+          <button type="button" onclick="navigateToSiteSection('inicio')" class="sidebar-link active" data-site-nav="inicio">
+            <span class="text-[#F0B90B]">◆</span> <span data-i18n="nav_home">Início</span>
+          </button>
+          <button type="button" onclick="navigateToSiteSection('quem-somos')" class="sidebar-link" data-site-nav="quem-somos">
+            <span class="text-[#F0B90B]">◆</span> <span data-i18n="nav_about">Quem Somos</span>
+          </button>
+          <button type="button" onclick="navigateToSiteSection('o-que-oferecemos')" class="sidebar-link" data-site-nav="o-que-oferecemos">
+            <span class="text-[#F0B90B]">◆</span> <span data-i18n="nav_offer">O Que Oferecemos</span>
+          </button>
+          <button type="button" onclick="navigateToSiteSection('invista-agora')" class="sidebar-link" data-site-nav="invista-agora">
+            <span class="text-[#F0B90B]">◆</span> <span data-i18n="nav_invest">Invista Agora</span>
+          </button>
+          <button type="button" onclick="navigateToSiteSection('contato')" class="sidebar-link" data-site-nav="contato">
+            <span class="text-[#F0B90B]">◆</span> <span data-i18n="nav_contact">Contato</span>
+          </button>
+        </div>
+
+        <!-- Menu Cliente Investidor -->
+        <div id="sidebar-menu-client" class="hidden">
+          <div class="px-6 py-2 text-[10px] uppercase tracking-widest text-[#F0B90B]" data-i18n="menu_client_title">Painel do Investidor</div>
+          <button type="button" onclick="switchClientTab('overview')" id="slink-client-overview" class="sidebar-link active">
+            <span>◈</span> <span data-i18n="ctab_overview">Visão Geral & Extrato</span>
+          </button>
+          <button type="button" onclick="switchClientTab('deposit')" id="slink-client-deposit" class="sidebar-link">
+            <span>◈</span> <span data-i18n="ctab_deposit">Investir via Pix</span>
+          </button>
+          <button type="button" onclick="switchClientTab('withdraw')" id="slink-client-withdraw" class="sidebar-link">
+            <span>◈</span> <span data-i18n="ctab_withdraw">Solicitar Saque</span>
+          </button>
+          <button type="button" onclick="switchClientTab('profile')" id="slink-client-profile" class="sidebar-link">
+            <span>◈</span> <span data-i18n="ctab_profile">Meus Dados & Encerramento</span>
+          </button>
+          <div class="pt-3 mt-3 border-t border-[#2B3139]">
+            <button type="button" onclick="switchMainView('SITE'); closeMobileDrawer();" class="sidebar-link text-xs">
+              <span>←</span> <span data-i18n="btn_back_site">Ver Site Institucional</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Menu Gerente de Contas -->
+        <div id="sidebar-menu-manager" class="hidden">
+          <div class="px-6 py-2 text-[10px] uppercase tracking-widest text-[#F0B90B]" data-i18n="menu_manager_title">Gerência de Contas</div>
+          <button type="button" onclick="switchAdminTab('overview')" id="slink-mgr-overview" class="sidebar-link active">
+            <span>◈</span> <span data-i18n="atab_overview">Dashboard</span>
+          </button>
+          <button type="button" onclick="switchAdminTab('users')" id="slink-mgr-users" class="sidebar-link">
+            <span>◈</span> <span data-i18n="mtab_clients">Clientes</span>
+          </button>
+          <button type="button" onclick="switchAdminTab('reports')" id="slink-mgr-reports" class="sidebar-link">
+            <span>◈</span> <span data-i18n="atab_reports">Relatórios Auditados (CSV/PDF)</span>
+          </button>
+          <div class="pt-3 mt-3 border-t border-[#2B3139]">
+            <button type="button" onclick="switchMainView('SITE'); closeMobileDrawer();" class="sidebar-link text-xs">
+              <span>←</span> <span data-i18n="btn_back_site">Ver Site Institucional</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Menu Administrador Geral -->
+        <div id="sidebar-menu-admin" class="hidden">
+          <div class="px-6 py-2 text-[10px] uppercase tracking-widest text-[#F0B90B]" data-i18n="menu_admin_title">Administração Geral</div>
+          <button type="button" onclick="switchAdminTab('overview')" id="slink-adm-overview" class="sidebar-link active">
+            <span>◈</span> <span data-i18n="atab_overview">Dashboard</span>
+          </button>
+          <button type="button" onclick="switchAdminTab('users')" id="slink-adm-users" class="sidebar-link">
+            <span>◈</span> <span data-i18n="atab_users">Usuários (Administrador / Gerente de Contas / Cliente)</span>
+          </button>
+          <button type="button" onclick="switchAdminTab('reports')" id="slink-adm-reports" class="sidebar-link">
+            <span>◈</span> <span data-i18n="atab_reports">Relatórios Auditados (CSV/PDF)</span>
+          </button>
+          <button type="button" onclick="switchAdminTab('security')" id="slink-adm-security" class="sidebar-link">
+            <span>◈</span> <span data-i18n="atab_security">Segurança & Acessos</span>
+          </button>
+          <button type="button" onclick="switchAdminTab('cms')" id="slink-adm-cms" class="sidebar-link">
+            <span>◈</span> <span data-i18n="atab_cms">Personalizar Site & Newsletter</span>
+          </button>
+          <div class="pt-3 mt-3 border-t border-[#2B3139]">
+            <button type="button" onclick="switchMainView('SITE'); closeMobileDrawer();" class="sidebar-link text-xs">
+              <span>←</span> <span data-i18n="btn_back_site">Ver Site Institucional</span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="p-5 border-t border-[#2B3139] bg-[#0B0E11]">
+      <div id="sidebar-guest-box" class="space-y-2.5">
+        <button type="button" onclick="openAuthModal('login'); closeMobileDrawer();" class="btn-outline w-full py-2.5 text-xs uppercase tracking-wider" data-i18n="btn_login">Entrar</button>
+        <button type="button" onclick="openAuthModal('register'); closeMobileDrawer();" class="btn-gold w-full py-2.5 text-xs uppercase tracking-wider" data-i18n="btn_register">Abrir Conta</button>
+      </div>
+
+      <div id="sidebar-logged-box" class="hidden space-y-3">
+        <div class="bg-[#181A20] border border-[#2B3139] p-3">
+          <div id="sidebar-user-name" class="text-xs font-bold text-[#EAECEF] truncate">Usuário</div>
+          <div id="sidebar-user-role" class="text-[10px] uppercase tracking-wider text-[#F0B90B] mt-0.5">Cliente</div>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <button type="button" onclick="returnToActiveDashboard(); closeMobileDrawer();" class="btn-outline py-2 text-[11px] uppercase" data-i18n="btn_my_panel">Meu Painel</button>
+          <button type="button" onclick="logoutUser(); closeMobileDrawer();" class="bg-red-950/70 border border-red-800 text-red-300 hover:bg-red-900 py-2 text-[11px] uppercase" data-i18n="btn_logout">Sair</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===================================================================== -->
+  <!-- 4. ÁREA PRINCIPAL                                                     -->
+  <!-- ===================================================================== -->
+  <div class="flex-1 flex flex-col min-w-0">
+
+    <!-- TOAST -->
+    <div id="toast-box" class="fixed top-20 lg:top-6 right-5 z-50 hidden max-w-md bg-[#181A20] border-l-4 border-[#F0B90B] border border-[#2B3139] p-4 shadow-2xl view-transition-enter">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <div id="toast-title" class="text-sm font-semibold text-[#F0B90B]">Notificação</div>
+          <div id="toast-msg" class="text-xs text-[#EAECEF] mt-1 leading-relaxed"></div>
+        </div>
+        <button onclick="hideToast()" class="text-[#848E9C] hover:text-white text-sm">&times;</button>
+      </div>
+    </div>
+
+    <!-- VIEW 1: SITE INSTITUCIONAL -->
+    <main id="view-site" class="flex-1 view-transition-enter">
+      <section id="inicio" class="relative overflow-hidden border-b border-[#2B3139] pt-16 pb-24 sm:pt-24 sm:pb-32 px-5 sm:px-8 bg-transparent">
+        <div class="aurora-orb -top-24 -left-24"></div>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+          <div class="lg:col-span-7">
+            <div id="cms-hero-badge" class="inline-block px-3.5 py-1.5 bg-[#181A20] border border-[#F0B90B]/40 text-[#F0B90B] text-xs uppercase tracking-widest mb-5" data-i18n="hero_badge">
+              Rendimento Diário de 1% ao Dia • Liquidez via Pix
+            </div>
+            <h1 id="cms-hero-title" class="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#EAECEF] leading-tight mb-6" data-i18n-html="hero_title">
+              Gestão Inteligente de Capital com <span class="shiny-gold-text">Rentabilidade Diária</span>
+            </h1>
+            <p id="cms-hero-subtitle" class="text-[#848E9C] text-base sm:text-lg leading-relaxed mb-8 max-w-2xl" data-i18n-html="hero_subtitle">
+              A <strong>Impulso Capital</strong> oferece uma estrutura transparente, auditável e automatizada para multiplicar seus recursos com apuração diária às 23:59 e liquidação imediata via Pix.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <button type="button" onclick="openAuthModal('register')" id="cms-hero-cta" class="btn-gold px-8 py-4 text-sm uppercase tracking-wider cursor-pointer" data-i18n="hero_cta">
+                Começar a Investir Agora
+              </button>
+              <a href="#o-que-oferecemos" class="btn-outline px-8 py-4 text-sm uppercase tracking-wider" data-i18n="hero_secondary">
+                Conhecer Diferenciais
+              </a>
+            </div>
+
+            <!-- 3 Cards Animados na Sessão Início -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-12 pt-8 border-t border-[#2B3139]">
+              <div class="hero-metric-card p-5">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-[10px] uppercase tracking-widest text-[#F0B90B]">◆ Rentabilidade</span>
+                  <span class="w-2 h-2 rounded-full bg-[#D4AF37] animate-ping"></span>
+                </div>
+                <div class="text-2xl font-bold text-[#F0B90B]">1,00%</div>
+                <div class="text-xs text-[#EAECEF] font-medium mt-1" data-i18n="stat_daily_card">Rendimento ao dia</div>
+              </div>
+
+              <div class="hero-metric-card p-5">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-[10px] uppercase tracking-widest text-[#F0B90B]">◆ Aporte mínimo</span>
+                  <span class="text-[11px] font-mono text-[#F0B90B]">PIX</span>
+                </div>
+                <div class="text-2xl font-bold text-[#EAECEF]">20 USDT</div>
+                <div class="text-xs text-[#848E9C] mt-1" data-i18n="stat_min_card">Aporte mínimo</div>
+              </div>
+
+              <div class="hero-metric-card p-5">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-[10px] uppercase tracking-widest text-[#F0B90B]">◆ Liquidação</span>
+                  <span class="text-[11px] font-mono text-emerald-400">23:59</span>
+                </div>
+                <div class="text-2xl font-bold text-[#EAECEF]">Pix 23:59</div>
+                <div class="text-xs text-[#848E9C] mt-1" data-i18n="stat_time_card">Crédito diário automático</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Simulador de Investimento com Duas Barras de Rolagem -->
+          <div class="lg:col-span-5 spotlight-card p-7 sm:p-8">
+            <div class="flex items-center justify-between border-b border-[#2B3139] pb-4 mb-6">
+              <div>
+                <h2 class="text-xl font-bold text-[#EAECEF]" data-i18n="sim_title">Simulador de Investimento</h2>
+                <p class="text-xs text-[#848E9C]" data-i18n="sim_sub">Projeção baseada na taxa fixa de 1% ao dia</p>
+              </div>
+              <span class="text-xs px-2.5 py-1 bg-[#0B0E11] border border-[#2B3139] text-[#F0B90B]">USDT: R$ <span id="hero-usdt-rate">5,75</span></span>
+            </div>
+
+            <div class="space-y-6">
+              <!-- Barra 1: Valor do Aporte (Verde Neon com Sombra Neon) -->
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <label for="sim-amount" class="block text-xs text-[#848E9C] uppercase" data-i18n="sim_amount_lbl">Valor do Aporte (R$)</label>
+                  <span id="sim-amount-label" class="text-sm font-bold text-[#39FF14]" style="text-shadow: 0 0 10px rgba(57,255,20,0.65);">R$ 5.000,00</span>
+                </div>
+                <input type="range" id="sim-amount" min="200" max="50000" step="100" value="5000" oninput="updateSimulator()" class="neon-green-slider w-full" />
+                <div class="flex justify-between text-[11px] text-[#848E9C] mt-1.5">
+                  <span>Mín: R$ 200 (20 USDT)</span>
+                  <span>Máx: R$ 50.000</span>
+                </div>
+              </div>
+
+              <!-- Barra 2: Período em Dias com Efeito Neon Dourado -->
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <label for="sim-days" class="text-xs text-[#848E9C] uppercase tracking-wider" data-i18n="sim_days_lbl">Período em Dias:</label>
+                  <span id="sim-days-label" class="text-sm font-bold text-[#FCD535]" style="text-shadow: 0 0 10px rgba(252,213,53,0.75);">30</span>
+                </div>
+                <input type="range" id="sim-days" min="1" max="30" value="30" oninput="updateSimulator()" class="neon-gold-slider w-full" />
+                <div class="flex justify-between text-[11px] text-[#848E9C] mt-1.5">
+                  <span>Mín: 1 dia</span>
+                  <span>Máx: 30 dias</span>
+                </div>
+              </div>
+
+              <div class="bg-[#0B0E11] border border-[#2B3139] p-5 space-y-3">
+                <div class="flex justify-between text-sm">
+                  <span class="text-[#848E9C]" data-i18n="sim_daily_lbl">Rendimento Diário (1%):</span>
+                  <span id="sim-daily-out" class="font-semibold text-[#EAECEF]">R$ 50,00</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                  <span class="text-[#848E9C]" data-i18n="sim_profit_lbl">Lucro Acumulado no Período:</span>
+                  <span id="sim-profit-out" class="font-semibold text-[#F0B90B]">+ R$ 1.500,00</span>
+                </div>
+                <div class="flex justify-between text-base pt-3 border-t border-[#2B3139]">
+                  <span class="font-semibold" data-i18n="sim_total_lbl">Total Disponível ao Final:</span>
+                  <span id="sim-total-out" class="font-bold text-[#F0B90B]">R$ 6.500,00</span>
+                </div>
+              </div>
+              <button type="button" onclick="openAuthModal('register')" class="btn-gold w-full py-3.5 text-sm uppercase tracking-wider cursor-pointer" data-i18n="sim_cta">
+                Aportar com Pix Agora
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    <!-- /#hero-banner-wrapper -->  
+      
+
+      <!-- QUEM SOMOS (DUAS COLUNAS) -->
+      <section id="quem-somos" class="about-skyline-bg parallax-bg-section border-b border-[#2B3139] py-20 px-5 sm:px-8 overflow-hidden">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <!-- Coluna 1: Descrição Institucional + Cifrão ($) Neon Verticalmente Abaixo -->
+          <div class="lg:col-span-6 space-y-8">
+            <div>
+              <span class="text-xs uppercase tracking-widest text-[#F0B90B]" data-i18n="about_kicker">Institucional</span>
+              <h2 id="cms-about-title" class="text-3xl sm:text-4xl font-bold mt-2 mb-4" data-i18n-html="about_title">Quem Somos</h2>
+              <p id="cms-about-desc" class="text-[#848E9C] leading-relaxed text-base" data-i18n-html="about_desc">
+                A <strong>Impulso Capital</strong> nasceu com o propósito de democratizar operações estruturadas de alta liquidez, unindo governança rigorosa, criptografia de padrão bancário e acompanhamento transparente em tempo real para cada investidor.
+              </p>
+            </div>
+
+            <div class="pt-2 flex items-center gap-5">
+              <div class="neon-dollar-stage shrink-0" title="Impulso Capital — Patrimônio & Liquidez">
+                <span id="animated-dollar-sign" class="neon-dollar-glyph neon-dollar-quirk">$</span>
+              </div>
+              <div>
+                <div class="text-xs uppercase tracking-widest text-[#FFF700] font-semibold" data-i18n="dollar_badge">Liquidez & Rentabilidade Auditada</div>
+                <div class="text-xs text-[#848E9C] mt-1" data-i18n="dollar_sub">Apuração diária às 23:59 com liquidação imediata via Pix.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coluna 2: Cards Verticalmente Posicionados Um Acima do Outro -->
+          <div class="lg:col-span-6 flex flex-col gap-5">
+            <div class="spotlight-card p-7">
+              <div class="text-[#F0B90B] font-serif-title text-xl font-bold mb-2" data-i18n="about_c1_t">Governança & Auditoria</div>
+              <p class="text-sm text-[#848E9C] leading-relaxed" data-i18n="about_c1_d">Cada movimentação é registrada em livro-razão imutável com rastreabilidade completa de aportes, rendimentos diários e liquidações Pix.</p>
+            </div>
+            <div class="spotlight-card p-7">
+              <div class="text-[#F0B90B] font-serif-title text-xl font-bold mb-2" data-i18n="about_c2_t">Proteção LGPD Total</div>
+              <p class="text-sm text-[#848E9C] leading-relaxed" data-i18n="about_c2_d">Dados sensíveis como CPF e chaves Pix são protegidos com criptografia AES-256-GCM e controle estrito de acesso por perfil.</p>
+            </div>
+            <div class="spotlight-card p-7">
+              <div class="text-[#F0B90B] font-serif-title text-xl font-bold mb-2" data-i18n="about_c3_t">Atendimento Dedicado</div>
+              <p class="text-sm text-[#848E9C] leading-relaxed" data-i18n="about_c3_d">Suporte direto por Gerentes de Contas e relatórios semanais automatizados no WhatsApp toda sexta-feira.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- O QUE OFERECEMOS -->
+      <section id="o-que-oferecemos" class="offer-chart-bg parallax-bg-section border-b border-[#2B3139] py-20 px-5 sm:px-8 overflow-hidden">
+        <div class="relative z-10 max-w-7xl mx-auto">
+          <div class="max-w-3xl mb-12">
+            <span class="text-xs uppercase tracking-widest text-[#F0B90B]" data-i18n="offer_kicker">Soluções Financeiras</span>
+            <h2 id="cms-offer-title" class="text-3xl sm:text-4xl font-bold mt-2 mb-4" data-i18n-html="offer_title">O Que Oferecemos</h2>
+            <p id="cms-offer-desc" class="text-[#848E9C] leading-relaxed" data-i18n-html="offer_desc">
+              Estrutura completa para você investir sem burocracia, acompanhar seus ganhos todos os dias e resgatar via Pix sempre que desejar.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="spotlight-card p-7 bg-[#181A20]/85 backdrop-blur-md border-[#2B3139] hover:border-[#F0B90B]/50">
+              <h3 class="text-lg font-bold text-[#EAECEF] mb-2" data-i18n="offer_c1_t">Rentabilidade de 1% ao Dia</h3>
+              <p class="text-sm text-[#848E9C] leading-relaxed" data-i18n="offer_c1_d">Todo capital aportado e confirmado gera 1% de rendimento diário creditado automaticamente às 23:59 no seu painel.</p>
+            </div>
+            <div class="spotlight-card p-7 bg-[#181A20]/85 backdrop-blur-md border-[#2B3139] hover:border-[#F0B90B]/50">
+              <h3 class="text-lg font-bold text-[#EAECEF] mb-2" data-i18n="offer_c2_t">Saques Flexíveis & Automáticos</h3>
+              <p class="text-sm text-[#848E9C] leading-relaxed" data-i18n="offer_c2_d">Saque apenas seus rendimentos acumulados, resgate o valor total a qualquer momento ou receba automaticamente no último dia útil do mês.</p>
+            </div>
+            <div class="spotlight-card p-7 bg-[#181A20]/85 backdrop-blur-md border-[#2B3139] hover:border-[#F0B90B]/50">
+              <h3 class="text-lg font-bold text-[#EAECEF] mb-2" data-i18n="offer_c3_t">Briefing Semanal de Mercado</h3>
+              <p class="text-sm text-[#848E9C] leading-relaxed" data-i18n="offer_c3_d">Receba toda segunda-feira às 06:00 nossa curadoria exclusiva com Ibovespa, Selic, juros BACEN, dólar e as 5 principais notícias financeiras.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INVISTA AGORA -->
+      <section id="invista-agora" class="cta-vault-bg parallax-bg-section border-b border-[#2B3139] py-24 px-5 sm:px-8 overflow-hidden">
+        <div class="relative z-10 max-w-5xl mx-auto spotlight-card p-10 sm:p-14 text-center bg-[#181A20]/85 backdrop-blur-md border-[#F0B90B]/35 shadow-2xl">
+          <span class="text-xs uppercase tracking-widest text-[#F0B90B]" data-i18n="invest_kicker">Acesso Imediato</span>
+          <h2 id="cms-invest-title" class="text-3xl sm:text-4xl font-bold mt-3 mb-4" data-i18n-html="invest_title">Invista Agora na Impulso Capital</h2>
+          <p id="cms-invest-desc" class="text-[#848E9C] max-w-2xl mx-auto mb-8 leading-relaxed" data-i18n-html="invest_desc">
+            Abra sua conta em menos de 2 minutos, ative seu cadastro pelo link enviado ao seu e-mail e realize seu primeiro aporte a partir de 20 USDT via Pix.
+          </p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <button type="button" onclick="openAuthModal('register')" class="btn-gold px-8 py-4 text-sm uppercase tracking-wider cursor-pointer" data-i18n="invest_cta1">
+              Criar Minha Conta de Investidor
+            </button>
+            <button type="button" onclick="openAuthModal('login')" class="btn-outline px-8 py-4 text-sm uppercase tracking-wider cursor-pointer" data-i18n="invest_cta2">
+              Já Tenho Conta (Acessar Painel)
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTATO -->
+      <div class="contact-cashfall-stage">
+      <section id="contato" class="contact-cashfall-bg parallax-bg-section pt-20 pb-14 px-5 sm:px-8">      <div class="falling-money-layer" aria-hidden="true">
+        <div class="falling-item falling-coin" style="left: 5%; animation-duration: 9.5s; animation-delay: -1s;">$</div>
+        <div class="falling-item falling-note" style="left: 12%; animation-duration: 12s; animation-delay: -5s;">R$</div>
+        <div class="falling-item falling-token" style="left: 20%; animation-duration: 10.5s; animation-delay: -3s;">USDT</div>
+        <div class="falling-item falling-coin" style="left: 28%; animation-duration: 13s; animation-delay: -8s;">$</div>
+        <div class="falling-item falling-note" style="left: 36%; animation-duration: 11s; animation-delay: -2s;">$100</div>
+        <div class="falling-item falling-token" style="left: 45%; animation-duration: 9.8s; animation-delay: -6s;">IC</div>
+        <div class="falling-item falling-coin" style="left: 54%; animation-duration: 12.5s; animation-delay: -4s;">$</div>
+        <div class="falling-item falling-note" style="left: 63%; animation-duration: 10.8s; animation-delay: -7s;">R$</div>
+        <div class="falling-item falling-token" style="left: 72%; animation-duration: 11.6s; animation-delay: -1.5s;">USDT</div>
+        <div class="falling-item falling-coin" style="left: 81%; animation-duration: 9.2s; animation-delay: -5.5s;">$</div>
+        <div class="falling-item falling-note" style="left: 89%; animation-duration: 12.8s; animation-delay: -3.5s;">$50</div>
+        <div class="falling-item falling-coin" style="left: 95%; animation-duration: 10.2s; animation-delay: -6.5s;">$</div>
+      </div>
+        <div class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div class="lg:col-span-5">
+            <span class="text-xs uppercase tracking-widest text-[#F0B90B]" data-i18n="contact_kicker">Fale Conosco</span>
+            <h2 id="cms-contact-title" class="text-3xl sm:text-4xl font-bold mt-2 mb-4" data-i18n-html="contact_title">Atendimento & Suporte</h2>
+            <p id="cms-contact-desc" class="text-[#848E9C] leading-relaxed mb-6" data-i18n-html="contact_desc">
+              Dúvidas sobre aportes, prazos de liquidação ou gestão patrimonial? Envie sua mensagem diretamente para nossa equipe administrativa e gerência de contas.
+            </p>
+            <div class="spotlight-card p-6 space-y-3 text-sm bg-[#181A20]/85 backdrop-blur-md">
+              <div><strong class="text-[#F0B90B]" data-i18n="contact_info_email">E-mail Institucional:</strong> <span id="site-contact-email-val">contato@agenciabola.com</span></div>
+              <div><strong class="text-[#F0B90B]" data-i18n="contact_info_pix">Horário de Liquidação:</strong> <span id="site-contact-pix-val">24/7 via Pix Automático</span></div>
+              <div><strong class="text-[#F0B90B]" data-i18n="contact_info_yield">Apuração de Rendimentos:</strong> <span id="site-contact-yield-val">Diariamente às 23:59 (Brasília)</span></div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 spotlight-card p-8 bg-[#181A20]/85 backdrop-blur-md">
+            <form onsubmit="submitContactForm(event)" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs text-[#848E9C] uppercase mb-1" data-i18n="lbl_fullname">Nome Completo *</label>
+                  <input type="text" id="contact-name" required class="input-dark w-full px-4 py-3 text-sm" />
+                </div>
+                <div>
+                  <label class="block text-xs text-[#848E9C] uppercase mb-1" data-i18n="lbl_email">E-mail *</label>
+                  <input type="email" id="contact-email" required class="input-dark w-full px-4 py-3 text-sm" />
+                </div>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs text-[#848E9C] uppercase mb-1">WhatsApp *</label>
+                  <input type="text" id="contact-whatsapp" required class="input-dark w-full px-4 py-3 text-sm" />
+                </div>
+                <div>
+                  <label class="block text-xs text-[#848E9C] uppercase mb-1" data-i18n="lbl_subject">Assunto *</label>
+                  <input type="text" id="contact-subject" required class="input-dark w-full px-4 py-3 text-sm" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs text-[#848E9C] uppercase mb-1" data-i18n="lbl_message">Mensagem *</label>
+                <textarea id="contact-message" rows="4" required class="input-dark w-full px-4 py-3 text-sm"></textarea>
+              </div>
+              <button type="submit" class="btn-gold px-8 py-3.5 text-sm uppercase tracking-wider" data-i18n="btn_send_msg">Enviar Mensagem</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- RODAPÉ SEPARADO POR LINHA SUPERIOR MANTENDO O FUNDO DA SESSÃO CONTATO -->
+      <footer class="border-t border-[#333333] bg-[#121212] py-8 px-5 sm:px-8 text-xs text-[#9CA3AF]">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div data-i18n="footer_copy">&copy; 2026 Impulso Capital. Todos os direitos reservados. Conformidade LGPD (Lei nº 13.709/2018).
+            <div class="flex items-center gap-2 text-[#EAECEF]">
+            <span class="text-[#848E9C]">desenvolvido por</span>
+            <a href="https://agenciabola.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center hover:opacity-90 transition" title="Agência Bola">
+              <img src="assets/agencia_bola.png" width="50" alt="Agência Bola">
+            </a>
+          </div>
+        </div>
+        <div class="flex items-center gap-5">
+          <button type="button" onclick="openTermsModal()" class="hover:text-[#D4AF37] underline cursor-pointer" data-i18n="footer_terms">Termos de Serviço</button>
+          <button type="button" onclick="reopenCookieBanner()" class="hover:text-[#D4AF37] underline cursor-pointer" data-i18n="footer_cookies">Preferências de Cookies (LGPD)</button>
+        </div>
+      </div>
+    </footer>    
+    </div><!--/.contact-cashfall-stage -->
+    </main>
+
+    <!-- VIEW 2: PAINEL DO CLIENTE INVESTIDOR -->
+    <section id="view-client-dashboard" class="hidden flex-1 max-w-6xl w-full mx-auto px-5 sm:px-10 py-10 view-transition-enter">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#2B3139] pb-6 mb-8">
+        <div>
+          <span class="text-xs uppercase tracking-widest text-[#F0B90B]" data-i18n="menu_client_title">Área do Investidor</span>
+          <h1 class="text-2xl sm:text-3xl font-bold mt-1"><span data-i18n="lbl_hello">Olá,</span> <span id="client-welcome-name">Investidor</span></h1>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <div class="bg-[#181A20] border border-[#F0B90B]/50 px-4 py-2 flex items-center gap-3">
+            <div>
+              <div class="text-[10px] uppercase tracking-wider text-[#848E9C]" data-i18n="usd_quote_title">Dólar do Dia (Atualiza 3h)</div>
+              <div class="text-sm font-bold text-[#F0B90B]">USD/BRL: R$ <span id="client-usd-rate">5,72</span> <span class="text-[10px] text-[#848E9C] font-normal">(<span id="client-usd-time">12:00</span>)</span></div>
+            </div>
+            <button type="button" onclick="refreshUsdQuote()" class="text-xs border border-[#2B3139] px-2 py-1 hover:border-[#F0B90B] text-[#F0B90B]">↻</button>
+          </div>
+
+          <button type="button" onclick="simulate2359Yield()" class="btn-outline px-3 py-2.5 text-xs" data-i18n="btn_sim_2359">Simular Virada 23:59 (+1%)</button>
+          <button type="button" onclick="simulateFridayWhatsApp()" class="btn-outline px-3 py-2.5 text-xs" data-i18n="btn_sim_friday">Simular Sexta WhatsApp</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-8">
+        <div class="spotlight-card p-6">
+          <div class="text-xs text-[#848E9C] uppercase" data-i18n="card_inv_month">Total Investido no Mês</div>
+          <div id="card-invested-month" class="text-2xl font-bold text-[#EAECEF] mt-2">R$ 0,00</div>
+          <div class="text-xs text-[#848E9C] mt-2"><span data-i18n="card_last_dep">Último aporte:</span> <span id="card-last-deposit" class="text-[#F0B90B]">R$ 0,00</span></div>
+        </div>
+        <div class="spotlight-card p-6">
+          <div class="text-xs text-[#848E9C] uppercase" data-i18n="card_daily_yld">Rendimento do Dia (1%)</div>
+          <div id="card-daily-yield" class="text-2xl font-bold text-[#F0B90B] mt-2">R$ 0,00</div>
+          <div class="text-xs text-[#848E9C] mt-2" data-i18n="card_daily_sub">Crédito automático às 23:59</div>
+        </div>
+        <div class="spotlight-card p-6">
+          <div class="text-xs text-[#848E9C] uppercase" data-i18n="card_accum_yld">Rendimentos Acumulados</div>
+          <div id="card-accum-yield" class="text-2xl font-bold text-emerald-400 mt-2">R$ 0,00</div>
+          <div class="text-xs text-[#848E9C] mt-2" data-i18n="card_accum_sub">Disponível para saque imediato</div>
+        </div>
+        <div class="spotlight-card p-6">
+          <div class="text-xs text-[#848E9C] uppercase" data-i18n="card_tot_wd">Total Disponível p/ Saque</div>
+          <div id="card-total-withdrawable" class="text-2xl font-bold text-[#F0B90B] mt-2">R$ 0,00</div>
+          <div class="text-xs text-[#848E9C] mt-2"><span data-i18n="card_cap_lbl">Capital:</span> <span id="card-principal-total">R$ 0,00</span></div>
+        </div>
+      </div>
+
+      <div id="ctab-overview" class="grid grid-cols-1 lg:grid-cols-12 gap-8 view-transition-enter">
+        <div class="lg:col-span-6 spotlight-card p-6">
+          <h3 class="text-lg font-bold mb-1" data-i18n="chart_client_title">Frequência Diária de Investimentos</h3>
+          <p class="text-xs text-[#848E9C] mb-4" data-i18n="chart_client_sub">Evolução de aportes e saldo ao longo dos dias</p>
+          <canvas id="client-chart" height="210" class="w-full bg-[#0B0E11] border border-[#2B3139] p-2"></canvas>
+        </div>
+        <div class="lg:col-span-6 spotlight-card p-6">
+          <h3 class="text-lg font-bold mb-1" data-i18n="timeline_title">Linha do Tempo Financeira</h3>
+          <p class="text-xs text-[#848E9C] mb-4" data-i18n="timeline_sub">Histórico auditável de aportes, rendimentos 23:59 e saques</p>
+          <div id="client-timeline-list" class="space-y-3 max-h-[300px] overflow-y-auto pr-1"></div>
+        </div>
+      </div>
+
+      <div id="ctab-deposit" class="hidden max-w-xl spotlight-card p-8 view-transition-enter">
+        <h3 class="text-xl font-bold mb-2" data-i18n="dep_title">Novo Aporte via Pix</h3>
+        <p class="text-xs text-[#848E9C] mb-6" data-i18n="dep_sub">Valor mínimo equivalente a 20 USDT na cotação atual.</p>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs text-[#848E9C] uppercase mb-1" data-i18n="sim_amount_lbl">Valor do Aporte (R$)</label>
+            <input type="number" id="deposit-amount-input" value="500" min="115" step="10" class="input-dark w-full px-4 py-3 text-lg font-bold" />
+          </div>
+          <button type="button" onclick="generateClientPix()" class="btn-gold w-full py-3.5 text-sm uppercase" data-i18n="btn_gen_pix">Gerar QR Code Pix</button>
+
+          <div id="pix-qr-box" class="hidden bg-[#0B0E11] border border-[#F0B90B] p-5 mt-4 space-y-3">
+            <div class="text-xs text-[#F0B90B] uppercase font-bold" data-i18n="pix_generated">Pix Copia e Cola Gerado</div>
+            <input type="text" id="pix-copy-code" readonly class="input-dark w-full px-3 py-2 text-xs font-mono" />
+            <button type="button" onclick="confirmSimulatedPixDeposit()" class="btn-gold w-full py-2.5 text-xs uppercase" data-i18n="btn_confirm_pix">Simular Pagamento Pix Confirmado</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="ctab-withdraw" class="hidden max-w-xl spotlight-card p-8 view-transition-enter">
+        <h3 class="text-xl font-bold mb-2" data-i18n="wd_title">Solicitar Saque via Pix</h3>
+        <p class="text-xs text-[#848E9C] mb-6" data-i18n="wd_sub">Saque apenas seus rendimentos acumulados ou resgate o saldo total.</p>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs text-[#848E9C] uppercase mb-1" data-i18n="wd_mode_lbl">Modalidade de Saque</label>
+            <select id="withdraw-mode" onchange="updateWithdrawPreset()" class="input-dark w-full px-4 py-3 text-sm">
+              <option value="YIELD" data-i18n="wd_opt_yield">Somente Rendimentos Acumulados</option>
+              <option value="FULL" data-i18n="wd_opt_full">Saque Total (Capital Principal + Rendimentos)</option>
+              <option value="CUSTOM" data-i18n="wd_opt_custom">Valor Personalizado</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs text-[#848E9C] uppercase mb-1" data-i18n="wd_amount_lbl">Valor do Saque (R$)</label>
+            <input type="number" id="withdraw-amount-input" step="0.01" class="input-dark w-full px-4 py-3 text-lg font-bold" />
+          </div>
+          <button type="button" onclick="submitClientWithdrawal()" class="btn-gold w-full py-3.5 text-sm uppercase" data-i18n="btn_confirm_wd">Confirmar Solicitação de Saque Pix</button>
+        </div>
+      </div>
+
+      <div id="ctab-profile" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-8 view-transition-enter">
+        <div class="spotlight-card p-8">
+          <h3 class="text-xl font-bold mb-4" data-i18n="prof_title">Meus Dados Cadastrais</h3>
+          <form onsubmit="saveClientProfile(event)" class="space-y-4">
+            <div>
+              <label class="block text-xs text-[#848E9C] uppercase mb-1" data-i18n="lbl_fullname">Nome Completo</label>
+              <input type="text" id="prof-name" required class="input-dark w-full px-4 py-2.5 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs text-[#848E9C] uppercase mb-1" data-i18n="lbl_cpf_locked">CPF (Bloqueado para edição)</label>
+              <input type="text" id="prof-cpf" disabled class="input-dark w-full px-4 py-2.5 text-sm opacity-60 cursor-not-allowed" />
+            </div>
+            <div>
+              <label class="block text-xs text-[#848E9C] uppercase mb-1">WhatsApp</label>
+              <input type="text" id="prof-whatsapp" required class="input-dark w-full px-4 py-2.5 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs text-[#848E9C] uppercase mb-1" data-i18n="lbl_pix_key">Chave Pix para Recebimento</label>
+              <input type="text" id="prof-pix" required class="input-dark w-full px-4 py-2.5 text-sm" />
+            </div>
+            <label class="flex items-center gap-2 text-xs text-[#848E9C] pt-2">
+              <input type="checkbox" id="prof-newsletter" class="accent-[#F0B90B]" />
+              <span data-i18n="lbl_news_opt">Receber Newsletter semanal do mercado financeiro (Segundas às 06:00)</span>
+            </label>
+            <button type="submit" class="btn-gold px-6 py-3 text-xs uppercase" data-i18n="btn_save_prof">Salvar Alterações</button>
+          </form>
+        </div>
+
+        <div class="spotlight-card p-8 border-red-900/60">
+          <h3 class="text-xl font-bold text-red-400 mb-2" data-i18n="close_title">Encerramento de Conta (LGPD)</h3>
+          <p class="text-xs text-[#848E9C] leading-relaxed mb-6" data-i18n="close_desc">
+            Ao encerrar sua conta, todo o seu saldo disponível é transferido via Pix para sua chave cadastrada e seu acesso torna-se INATIVO. Exige código OTP de 4 dígitos enviado no seu WhatsApp.
+          </p>
+          <button type="button" onclick="requestClosureOtp()" class="bg-red-950 border border-red-700 text-red-200 px-5 py-3 text-xs uppercase hover:bg-red-900" data-i18n="btn_req_otp">
+            Solicitar Código OTP no WhatsApp
+          </button>
+
+          <div id="closure-otp-box" class="hidden mt-5 pt-5 border-t border-[#2B3139] space-y-3">
+            <div class="text-xs text-[#F0B90B]"><span data-i18n="otp_sent_hint">Código enviado para seu WhatsApp (Simulação:</span> <strong>4829</strong>)</div>
+            <input type="text" id="closure-otp-input" maxlength="4" placeholder="0000" class="input-dark w-40 px-4 py-2.5 text-center text-lg tracking-widest font-bold" />
+            <button type="button" onclick="confirmAccountClosure()" class="btn-gold px-5 py-2.5 text-xs uppercase" data-i18n="btn_confirm_close">Confirmar Encerramento</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: PAINEL ADMINISTRADOR & GERENTE DE CONTAS -->
+    <section id="view-admin-dashboard" class="hidden flex-1 max-w-6xl w-full mx-auto px-5 sm:px-10 py-10 view-transition-enter">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#2B3139] pb-6 mb-8">
+        <div>
+          <span id="admin-role-label" class="text-xs uppercase tracking-widest text-[#F0B90B]">Painel Administrativo</span>
+          <h1 class="text-2xl sm:text-3xl font-bold mt-1" data-i18n="admin_exec_title">Gestão Executiva — Impulso Capital</h1>
+        </div>
+        <div id="admin-role-notice" class="text-xs bg-[#181A20] border border-[#2B3139] px-4 py-2 text-[#848E9C]"></div>
+      </div>
+
+      <!-- ABA ADMIN 1: DASHBOARD -->
+      <div id="atab-overview" class="space-y-8 view-transition-enter">
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+          <div class="spotlight-card p-6">
+            <div class="text-xs text-[#848E9C] uppercase" data-i18n="adm_kpi1">Total Aportado (Mês)</div>
+            <div class="text-2xl font-bold text-[#EAECEF] mt-2">R$ 148.500,00</div>
+          </div>
+          <div class="spotlight-card p-6">
+            <div class="text-xs text-[#848E9C] uppercase" data-i18n="adm_kpi2">Rendimentos Distribuídos</div>
+            <div class="text-2xl font-bold text-[#F0B90B] mt-2">R$ 18.420,00</div>
+          </div>
+          <div class="spotlight-card p-6">
+            <div class="text-xs text-[#848E9C] uppercase" data-i18n="adm_kpi3">Total Sacado no Mês</div>
+            <div class="text-2xl font-bold text-emerald-400 mt-2">R$ 42.300,00</div>
+          </div>
+          <div class="spotlight-card p-6">
+            <div class="text-xs text-[#848E9C] uppercase" data-i18n="adm_kpi4">Total a Sacar (Passivo Ativo)</div>
+            <div class="text-2xl font-bold text-[#F0B90B] mt-2">R$ 124.620,00</div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 spotlight-card p-6">
+            <h3 class="text-lg font-bold mb-1" data-i18n="adm_line_title">Investimentos & Rentabilidade ao Longo do Tempo</h3>
+            <p class="text-xs text-[#848E9C] mb-4" data-i18n="adm_line_sub">Linha Dourada: Aportes | Linha Verde: Rentabilidade</p>
+            <canvas id="admin-line-chart" height="230" class="w-full bg-[#0B0E11] border border-[#2B3139] p-2"></canvas>
+          </div>
+          <div class="lg:col-span-5 spotlight-card p-6 flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold mb-1" data-i18n="adm_pie_title">Liquidez Mensal (Pizza)</h3>
+              <p class="text-xs text-[#848E9C] mb-4" data-i18n="adm_pie_sub">Total Sacado no Mês vs. Total a Sacar</p>
+            </div>
+            <canvas id="admin-pie-chart" height="210" class="w-full bg-[#0B0E11] border border-[#2B3139] p-2"></canvas>
+            <div class="flex justify-center gap-6 text-xs mt-4">
+              <span class="flex items-center gap-2"><span class="w-3 h-3 inline-block bg-[#10B981]"></span> <span data-i18n="pie_leg1">Sacado no Mês</span></span>
+              <span class="flex items-center gap-2"><span class="w-3 h-3 inline-block bg-[#D4AF37]"></span> <span data-i18n="pie_leg2">Total a Sacar</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABA ADMIN 2: USUÁRIOS / CLIENTES -->
+      <div id="atab-users" class="hidden space-y-8 view-transition-enter">
+        <div class="spotlight-card p-6">
+          <h3 class="text-lg font-bold mb-4" data-i18n="adm_new_user_title">Cadastrar Novo Usuário</h3>
+          <form onsubmit="adminCreateUser(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <input type="text" id="new-u-name" required placeholder="Nome Completo" class="input-dark px-3 py-2.5 text-sm" />
+            <input type="text" id="new-u-cpf" required placeholder="CPF (000.000.000-00)" class="input-dark px-3 py-2.5 text-sm" />
+            <input type="email" id="new-u-email" required placeholder="E-mail" class="input-dark px-3 py-2.5 text-sm" />
+            <input type="text" id="new-u-whats" required placeholder="WhatsApp" class="input-dark px-3 py-2.5 text-sm" />
+            <input type="text" id="new-u-pix" required placeholder="Chave Pix" class="input-dark px-3 py-2.5 text-sm" />
+            <select id="new-u-role" class="input-dark px-3 py-2.5 text-sm">
+              <option value="CLIENT">Cliente</option>
+              <option value="ACCOUNT_MANAGER" id="opt-role-manager">Gerente de Contas</option>
+              <option value="ADMIN" id="opt-role-admin">Administrador</option>
+            </select>
+            <input type="text" id="new-u-pass" required maxlength="6" placeholder="Senha 6 dígitos (Ab1@98)" class="input-dark px-3 py-2.5 text-sm" />
+            <button type="submit" class="btn-gold px-4 py-2.5 text-xs uppercase" data-i18n="btn_create_user_manual">Cadastrar & Enviar Manual</button>
+          </form>
+        </div>
+
+        <div class="spotlight-card p-6 overflow-x-auto">
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <h3 class="text-lg font-bold" data-i18n="adm_users_list_title">Base de Usuários Cadastrados</h3>
+            <div class="flex flex-wrap items-center gap-2">
+              <input type="text" id="user-filter-name" oninput="applyUsersFilter()" placeholder="Pesquisar por nome..." class="input-dark px-3 py-2 text-xs w-52" />
+              <select id="user-filter-status" onchange="applyUsersFilter()" class="input-dark px-3 py-2 text-xs">
+                <option value="ALL">Todos os Status</option>
+                <option value="ATIVO">Ativos</option>
+                <option value="INATIVO">Inativos</option>
+              </select>
+            </div>
+          </div>
+
+          <table class="w-full text-left text-sm border-collapse">
+            <thead>
+              <tr class="border-b border-[#2B3139] text-xs text-[#848E9C] uppercase">
+                <th class="py-3 px-2" data-i18n="th_name">Nome</th>
+                <th class="py-3 px-2" data-i18n="th_role">Tipo de Usuário</th>
+                <th class="py-3 px-2" data-i18n="th_contact">E-mail / WhatsApp</th>
+                <th class="py-3 px-2" data-i18n="th_balance">Saldo Total</th>
+                <th class="py-3 px-2">Status</th>
+                <th class="py-3 px-2 text-right" data-i18n="th_actions">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="admin-users-tbody" class="divide-y divide-[#333333]"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ABA ADMIN 3: RELATÓRIOS AUDITADOS -->
+      <div id="atab-reports" class="hidden space-y-6 view-transition-enter">
+        <div class="spotlight-card p-6">
+          <h3 class="text-lg font-bold mb-1" data-i18n="rep_area_title">Relatórios Auditados</h3>
+          <p class="text-xs text-[#848E9C] mb-5" data-i18n="rep_area_sub">Clique sobre qualquer relatório para visualizar os detalhes e exportar em CSV ou PDF.</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <button type="button" onclick="openAuditedReportDetail('investments')" class="spotlight-card p-5 text-left hover:border-[#F0B90B] transition">
+              <div class="text-[11px] uppercase tracking-wider text-[#F0B90B] font-bold">Relatório 01</div>
+              <div class="text-base font-bold text-[#EAECEF] mt-1" data-i18n="rep_inv_title">Relatório de Investimentos (Aportes Pix)</div>
+              <div class="text-xs text-[#848E9C] mt-2" data-i18n="rep_click_view">Clique para abrir e exportar (CSV / PDF) &rarr;</div>
+            </button>
+
+            <button type="button" onclick="openAuditedReportDetail('withdrawals')" class="spotlight-card p-5 text-left hover:border-[#F0B90B] transition">
+              <div class="text-[11px] uppercase tracking-wider text-[#F0B90B] font-bold">Relatório 02</div>
+              <div class="text-base font-bold text-[#EAECEF] mt-1" data-i18n="rep_wd_title">Relatório de Saques Solicitados e Liquidados</div>
+              <div class="text-xs text-[#848E9C] mt-2" data-i18n="rep_click_view">Clique para abrir e exportar (CSV / PDF) &rarr;</div>
+            </button>
+
+            <button type="button" onclick="openAuditedReportDetail('yields')" class="spotlight-card p-5 text-left hover:border-[#F0B90B] transition">
+              <div class="text-[11px] uppercase tracking-wider text-[#F0B90B] font-bold">Relatório 03</div>
+              <div class="text-base font-bold text-[#EAECEF] mt-1" data-i18n="rep_yld_title">Relatório de Rendimentos Diários (1% • 23:59)</div>
+              <div class="text-xs text-[#848E9C] mt-2" data-i18n="rep_click_view">Clique para abrir e exportar (CSV / PDF) &rarr;</div>
+            </button>
+          </div>
+        </div>
+
+        <div id="audited-report-detail-panel" class="spotlight-card p-6 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#2B3139] pb-4">
+            <div>
+              <div class="text-[11px] uppercase tracking-wider text-[#F0B90B]" id="selected-report-code">RELATÓRIO SELECIONADO</div>
+              <h4 id="selected-report-title" class="text-xl font-bold text-[#EAECEF] mt-0.5">Relatório de Investimentos (Aportes Pix)</h4>
+              <p id="selected-report-meta" class="text-xs text-[#848E9C] mt-1">Auditoria com hash SHA-256 e registro do operador.</p>
+            </div>
+            <div class="flex gap-2">
+              <button type="button" onclick="exportSelectedReport('csv')" class="btn-outline px-4 py-2 text-xs">Exportar CSV</button>
+              <button type="button" onclick="exportSelectedReport('pdf')" class="btn-gold px-4 py-2 text-xs">Exportar PDF</button>
+            </div>
+          </div>
+          <div id="selected-report-table-wrap" class="overflow-x-auto text-xs"></div>
+        </div>
+      </div>
+
+      <!-- ABA ADMIN 4: SEGURANÇA & ACESSOS -->
+      <div id="atab-security" class="hidden spotlight-card p-6 view-transition-enter">
+        <h3 class="text-lg font-bold mb-1" data-i18n="sec_title">Relatório de Tentativas de Acesso & Bloqueios</h3>
+        <p class="text-xs text-[#848E9C] mb-4" data-i18n="sec_sub">Monitoramento de tentativas falhas, bloqueios de 30 minutos e geolocalização de IP</p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b border-[#2B3139] text-[#848E9C] uppercase">
+                <th class="py-3 px-2" data-i18n="th_datetime">Data/Hora</th>
+                <th class="py-3 px-2" data-i18n="th_identifier">Identificador</th>
+                <th class="py-3 px-2">IP Origem</th>
+                <th class="py-3 px-2" data-i18n="th_location">Localização</th>
+                <th class="py-3 px-2" data-i18n="th_result">Resultado</th>
+              </tr>
+            </thead>
+            <tbody id="admin-security-tbody" class="divide-y divide-[#333333]"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ABA ADMIN 5: PERSONALIZAR SITE (CMS HTML) & NEWSLETTER DRAG-AND-DROP -->
+      <div id="atab-cms" class="hidden space-y-6 view-transition-enter">
+        <div class="flex flex-wrap gap-2 border-b border-[#2B3139] pb-3">
+          <button type="button" onclick="switchCmsSection('logo')" id="cms-tab-logo" class="btn-gold px-3 py-1.5 text-xs">Logomarca</button>
+          <button type="button" onclick="switchCmsSection('hero')" id="cms-tab-hero" class="btn-outline px-3 py-1.5 text-xs">Início (Hero)</button>
+          <button type="button" onclick="switchCmsSection('about')" id="cms-tab-about" class="btn-outline px-3 py-1.5 text-xs">Quem Somos</button>
+          <button type="button" onclick="switchCmsSection('offer')" id="cms-tab-offer" class="btn-outline px-3 py-1.5 text-xs">O Que Oferecemos</button>
+          <button type="button" onclick="switchCmsSection('invest')" id="cms-tab-invest" class="btn-outline px-3 py-1.5 text-xs">Invista Agora</button>
+          <button type="button" onclick="switchCmsSection('contact')" id="cms-tab-contact" class="btn-outline px-3 py-1.5 text-xs">Contato</button>
+          <button type="button" onclick="switchCmsSection('newsletter')" id="cms-tab-newsletter" class="btn-outline px-3 py-1.5 text-xs">Newsletter Semanal (Drag & Drop)</button>
+        </div>
+
+        <!-- CMS: Logo & Favicon -->
+        <div id="cms-pane-logo" class="spotlight-card p-6 space-y-4">
+          <h3 class="text-lg font-bold">Identidade, Logomarca & Favicon do Site</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs text-[#848E9C] uppercase mb-1">Sigla do Emblema</label>
+              <input type="text" id="cms-in-badge" value="IC" maxlength="3" class="input-dark w-full px-3 py-2 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs text-[#848E9C] uppercase mb-1">Nome Principal</label>
+              <input type="text" id="cms-in-brand-title" value="IMPULSO CAPITAL" class="input-dark w-full px-3 py-2 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs text-[#848E9C] uppercase mb-1">Subtítulo</label>
+              <input type="text" id="cms-in-brand-sub" value="Gestão Patrimonial" class="input-dark w-full px-3 py-2 text-sm" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-[#848E9C] uppercase mb-1">URL de Imagem da Logo (Opcional — substitui o emblema)</label>
+            <input type="url" id="cms-in-logo-url" placeholder="https://..." class="input-dark w-full px-3 py-2 text-sm" />
+          </div>
+
+          <div class="pt-4 border-t border-[#2B3139] space-y-3">
+            <div class="text-xs uppercase tracking-wider text-[#F0B90B] font-bold">Favicon da Aba do Navegador (Subir ou Alterar)</div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+              <div>
+                <label class="block text-xs text-[#848E9C] uppercase mb-1">Subir Imagem de Favicon (PNG / JPG / SVG / ICO)</label>
+                <input type="file" id="cms-in-favicon-file" accept="image/*,.ico" onchange="handleFaviconFileUpload(event)" class="input-dark w-full px-3 py-2 text-xs" />
+              </div>
+              <div>
+                <label class="block text-xs text-[#848E9C] uppercase mb-1">Ou Informar / Alterar URL do Favicon</label>
+                <input type="text" id="cms-in-favicon-url" placeholder="https://agenciabola.com/favicon.png" class="input-dark w-full px-3 py-2 text-sm" />
+              </div>
+            </div>
+            <div class="flex items-center gap-3 text-xs text-[#848E9C]">
+              <span>Prévia atual do Favicon:</span>
+              <img id="cms-favicon-preview-img" src="" alt="Favicon" class="w-7 h-7 border border-[#F0B90B] bg-[#0B0E11] p-0.5 object-contain" />
+            </div>
+          </div>
+
+          <button type="button" onclick="applyCmsChanges()" class="btn-gold px-6 py-2.5 text-xs uppercase">Salvar e Publicar Logo & Favicon</button>
+        </div>
+
+        <!-- CMS: Seções HTML + Campos Específicos da Seção de Contatos -->
+        <div id="cms-pane-texts" class="hidden spotlight-card p-6 space-y-4">
+          <h3 id="cms-editor-heading" class="text-lg font-bold">Editar Seção (Aceita Código HTML)</h3>
+          <div>
+            <label class="block text-xs text-[#848E9C] uppercase mb-1">Título da Seção (HTML permitido)</label>
+            <input type="text" id="cms-in-sec-title" class="input-dark w-full px-3 py-2 text-sm font-mono" />
+          </div>
+          <div>
+            <label class="block text-xs text-[#848E9C] uppercase mb-1">Texto / Descrição da Seção (HTML permitido)</label>
+            <textarea id="cms-in-sec-desc" rows="4" class="input-dark w-full px-3 py-2 text-sm font-mono"></textarea>
+          </div>
+
+          <div id="cms-contact-details-box" class="hidden pt-4 border-t border-[#2B3139] space-y-4">
+            <div class="text-xs uppercase tracking-wider text-[#F0B90B] font-bold">Informações Institucionais de Contato</div>
+            <div>
+              <label class="block text-xs text-[#848E9C] uppercase mb-1">E-mail Institucional</label>
+              <input type="text" id="cms-in-contact-email" class="input-dark w-full px-3 py-2 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs text-[#848E9C] uppercase mb-1">Horário de Liquidação</label>
+              <input type="text" id="cms-in-contact-pix" class="input-dark w-full px-3 py-2 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs text-[#848E9C] uppercase mb-1">Apuração de Rendimentos</label>
+              <input type="text" id="cms-in-contact-yield" class="input-dark w-full px-3 py-2 text-sm" />
+            </div>
+          </div>
+
+          <button type="button" onclick="applyCmsTextSection()" class="btn-gold px-6 py-2.5 text-xs uppercase">Salvar e Publicar no Site</button>
+        </div>
+
+        <!-- CMS: Newsletter Drag & Drop -->
+        <div id="cms-pane-newsletter" class="hidden spotlight-card p-6 space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#2B3139] pb-4">
+            <div>
+              <h3 class="text-lg font-bold text-[#F0B90B]">Newsletter Financeira Semanal (Disparo Automático: Segunda-feira às 06:00)</h3>
+              <p class="text-xs text-[#848E9C]">Arraste os blocos para reordenar. Contém indicadores de abertura e 5 matérias com link original.</p>
+            </div>
+            <div class="flex gap-2">
+              <button type="button" onclick="autoCurateNews()" class="btn-outline px-4 py-2 text-xs">Atualizar 5 Matérias do Mercado</button>
+              <button type="button" onclick="previewNewsletterModal()" class="btn-outline px-4 py-2 text-xs">Pré-visualizar E-mail</button>
+              <button type="button" onclick="publishNewsletter()" class="btn-gold px-4 py-2 text-xs">Salvar & Agendar Segunda 06:00</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-[#0B0E11] border border-[#2B3139] p-4 text-xs">
+            <div><span class="text-[#848E9C]">IBOVESPA:</span> <strong class="text-[#EAECEF]">128.940 pts (+0,62%)</strong></div>
+            <div><span class="text-[#848E9C]">Índice SELIC:</span> <strong class="text-[#F0B90B]">11,25% a.a.</strong></div>
+            <div><span class="text-[#848E9C]">Juros BACEN:</span> <strong class="text-[#EAECEF]">11,15% a.a.</strong></div>
+            <div><span class="text-[#848E9C]">Dólar Abertura:</span> <strong class="text-emerald-400">R$ 5,72</strong></div>
+          </div>
+
+          <div id="newsletter-drag-list" class="space-y-3"></div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+  <!-- BANNER DE COOKIES & LGPD -->
+  <div id="lgpd-cookie-banner" class="hidden fixed bottom-0 inset-x-0 z-50 bg-[#181A20] border-t-2 border-[#F0B90B] p-5 shadow-2xl">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="text-xs sm:text-sm text-[#EAECEF] leading-relaxed" data-i18n-html="lgpd_banner_text">
+        <strong class="text-[#F0B90B]">Privacidade & Conformidade LGPD:</strong> Este site segue rigorosamente as diretrizes da Lei Geral de Proteção de Dados (Lei nº 13.709/2018) e utiliza cookies essenciais de segurança e sessão para garantir a integridade das suas operações financeiras.
+      </div>
+      <div class="flex items-center gap-3 shrink-0">
+        <button type="button" onclick="handleCookieConsent('REJECTED')" class="btn-outline px-4 py-2 text-xs uppercase cursor-pointer" data-i18n="btn_reject_cookies">Rejeitar Cookies</button>
+        <button type="button" onclick="handleCookieConsent('ACCEPTED')" class="btn-gold px-5 py-2 text-xs uppercase cursor-pointer" data-i18n="btn_accept_cookies">Concordar com Cookies</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: LOGIN / CADASTRO / REATIVAÇÃO CPF -->
+  <div id="auth-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="spotlight-card max-w-lg w-full p-8 relative my-8">
+      <button type="button" onclick="closeAuthModal()" class="absolute top-5 right-5 text-[#848E9C] hover:text-white text-xl cursor-pointer">&times;</button>
+
+      <div class="flex gap-4 border-b border-[#2B3139] pb-3 mb-6">
+        <button type="button" onclick="switchAuthTab('login')" id="auth-tab-login" class="text-sm font-bold text-[#F0B90B] border-b-2 border-[#F0B90B] pb-2 cursor-pointer" data-i18n="auth_tab_login">Entrar no Sistema</button>
+        <button type="button" onclick="switchAuthTab('register')" id="auth-tab-register" class="text-sm font-bold text-[#848E9C] pb-2 cursor-pointer" data-i18n="auth_tab_register">Cadastrar Novo Cliente</button>
+      </div>
+
+      <form id="form-login" onsubmit="handleLoginSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs text-[#848E9C] uppercase mb-1" data-i18n="login_id_lbl">CPF (Cliente) ou E-mail (Administrador / Gerente de Contas)</label>
+          <input type="text" id="login-identifier" required class="input-dark w-full px-4 py-3 text-sm" placeholder="111.222.333-44" />
+        </div>
+        <div>
+          <label class="block text-xs text-[#848E9C] uppercase mb-1" data-i18n="login_pass_lbl">Senha de 6 Dígitos</label>
+          <input type="password" id="login-password" maxlength="6" required class="input-dark w-full px-4 py-3 text-sm" placeholder="••••••" />
+        </div>
+        <button type="submit" class="btn-gold w-full py-3.5 text-sm uppercase tracking-wider cursor-pointer" data-i18n="btn_access_account">Acessar Conta</button>
+
+        <div class="pt-4 border-t border-[#2B3139]">
+          <div class="text-[11px] text-[#848E9C] uppercase mb-2" data-i18n="quick_demo_lbl">Acesso Rápido de Demonstração (3 Perfis):</div>
+          <div class="grid grid-cols-3 gap-2 text-[11px]">
+            <button type="button" onclick="quickFillLogin('111.222.333-44', 'Ab1@98')" class="btn-outline py-1.5 px-2 cursor-pointer" data-i18n="demo_client">Cliente</button>
+            <button type="button" onclick="quickFillLogin('gerente@agenciabola.com', 'Ge5$82')" class="btn-outline py-1.5 px-2 cursor-pointer" data-i18n="demo_manager">Gerente de Contas</button>
+            <button type="button" onclick="quickFillLogin('admin@agenciabola.com', 'Ad9#74')" class="btn-outline py-1.5 px-2 text-[#F0B90B] cursor-pointer" data-i18n="demo_admin">Administrador</button>
+          </div>
+        </div>
+      </form>
+
+      <form id="form-register" onsubmit="handleRegisterSubmit(event)" class="hidden space-y-3.5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs text-[#848E9C] uppercase mb-1" data-i18n="lbl_fullname">Nome Completo *</label>
+            <input type="text" id="reg-name" required class="input-dark w-full px-3 py-2.5 text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs text-[#848E9C] uppercase mb-1">CPF * <span class="text-[10px] text-[#F0B90B]">(Inativo: 999.888.777-66)</span></label>
+            <input type="text" id="reg-cpf" required placeholder="000.000.000-00" class="input-dark w-full px-3 py-2.5 text-sm" />
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs text-[#848E9C] uppercase mb-1" data-i18n="lbl_email">E-mail *</label>
+            <input type="email" id="reg-email" required class="input-dark w-full px-3 py-2.5 text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs text-[#848E9C] uppercase mb-1">WhatsApp *</label>
+            <input type="text" id="reg-whats" required placeholder="(11) 99999-9999" class="input-dark w-full px-3 py-2.5 text-sm" />
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs text-[#848E9C] uppercase mb-1" data-i18n="lbl_pix_short">Chave Pix *</label>
+            <input type="text" id="reg-pix" required class="input-dark w-full px-3 py-2.5 text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs text-[#848E9C] uppercase mb-1" data-i18n="lbl_strong_pass">Senha Forte (6 dígitos) *</label>
+            <input type="password" id="reg-pass" maxlength="6" required placeholder="Ab1@98" class="input-dark w-full px-3 py-2.5 text-sm" />
+          </div>
+        </div>
+
+        <label class="flex items-start gap-2.5 text-xs text-[#848E9C] pt-2 cursor-pointer">
+          <input type="checkbox" id="reg-newsletter-opt" checked class="mt-0.5 accent-[#F0B90B]" />
+          <span data-i18n="reg_news_check">Concordo em receber notícias e boletins semanais do setor financeiro no meu e-mail (toda segunda-feira às 06:00).</span>
+        </label>
+
+        <label class="flex items-start gap-2.5 text-xs text-[#EAECEF] cursor-pointer">
+          <input type="checkbox" id="reg-terms-req" required class="mt-0.5 accent-[#F0B90B]" />
+          <span><span data-i18n="reg_terms_pre">Li e concordo integralmente com os</span> <button type="button" onclick="openTermsModal()" class="text-[#F0B90B] underline font-semibold" data-i18n="footer_terms">Termos de Serviço</button>. *</span>
+        </label>
+
+        <button type="submit" class="btn-gold w-full py-3.5 text-sm uppercase tracking-wider mt-2 cursor-pointer" data-i18n="btn_finish_reg">Finalizar Cadastro & Receber Manual PDF</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: TERMOS DE SERVIÇO -->
+  <div id="terms-modal" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="surface-card max-w-2xl w-full p-8 max-h-[85vh] flex flex-col">
+      <div class="flex items-center justify-between border-b border-[#333333] pb-4 mb-4">
+        <h2 class="text-2xl font-bold text-[#D4AF37]">Termos de Serviço — Impulso Capital</h2>
+        <button type="button" onclick="closeTermsModal()" class="text-[#9CA3AF] hover:text-white text-2xl">&times;</button>
+      </div>
+      <div class="overflow-y-auto space-y-4 text-xs sm:text-sm text-[#9CA3AF] leading-relaxed pr-2">
+        <p><strong class="text-[#F3F4F6]">1. Objeto e Elegibilidade:</strong> A plataforma Impulso Capital destina-se a pessoas físicas maiores de 18 anos com CPF regularizado no Brasil, mediante ativação cadastral confirmada por e-mail.</p>
+        <p><strong class="text-[#F3F4F6]">2. Aportes e Piso Mínimo:</strong> Os investimentos são realizados exclusivamente via Pix com valor mínimo equivalente a 20 USDT na cotação vigente no momento da geração da cobrança.</p>
+        <p><strong class="text-[#F3F4F6]">3. Rentabilidade Diária (1% ao dia):</strong> Os aportes confirmados passam a render 1,00% ao dia sobre o capital principal ativo, com apuração e crédito automático realizados diariamente às 23:59 (Horário de Brasília).</p>
+        <p><strong class="text-[#F3F4F6]">4. Resgates e Liquidação Mensal:</strong> O investidor pode solicitar o saque parcial (rendimentos acumulados) ou total (principal + rendimentos) via Pix. No último dia útil de cada mês, o saldo total disponível é liquidado automaticamente para a chave Pix cadastrada.</p>
+        <p><strong class="text-[#F3F4F6]">5. Privacidade e LGPD:</strong> Em conformidade com a Lei nº 13.709/2018, dados pessoais sensíveis são armazenados com criptografia AES-256-GCM e jamais são comercializados a terceiros.</p>
+        <p><strong class="text-[#F3F4F6]">6. Encerramento de Conta:</strong> O titular pode encerrar sua conta a qualquer momento mediante validação de código OTP de 4 dígitos enviado ao seu WhatsApp cadastrado, recebendo integralmente seu saldo residual via Pix.</p>
+      </div>
+      <div class="pt-5 mt-5 border-t border-[#333333] flex justify-end gap-3">
+        <button type="button" onclick="closeTermsModal()" class="btn-outline px-5 py-2.5 text-xs uppercase">Fechar</button>
+        <button type="button" onclick="acceptTermsFromModal()" class="btn-gold px-6 py-2.5 text-xs uppercase">Li e Aceito os Termos</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PRÉ-VISUALIZAÇÃO DA NEWSLETTER -->
+  <div id="newsletter-preview-modal" class="hidden fixed inset-0 z-50 bg-black/85 flex items-center justify-center p-4">
+    <div class="spotlight-card max-w-2xl w-full p-6 max-h-[85vh] flex flex-col">
+      <div class="flex items-center justify-between border-b border-[#2B3139] pb-3 mb-4">
+        <h3 class="text-lg font-bold text-[#F0B90B]">Pré-visualização do E-mail da Newsletter (Segunda 06:00)</h3>
+        <button type="button" onclick="document.getElementById('newsletter-preview-modal').classList.add('hidden')" class="text-xl text-[#848E9C]">&times;</button>
+      </div>
+      <div id="newsletter-preview-body" class="overflow-y-auto bg-[#0B0E11] border border-[#2B3139] p-6 space-y-4 text-xs"></div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
